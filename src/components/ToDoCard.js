@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Stack from 'react-bootstrap/Stack';
 
-export const ToDoCard = () =>{
+export const ToDoCard = ({ handleClose, handleShow }) =>{
     return(
         <div>
             <Card className='my-3'>
@@ -25,11 +25,11 @@ export const ToDoCard = () =>{
                 </Card.Body>
                 <Card.Footer>
                     <Stack direction='horizontal' className='justify-content-center'>
-                        <Button variant='light' className='mx-3'>
-                            <i class="fas fa-edit"></i>
+                        <Button variant='light' className='mx-3' onClick={handleShow}>
+                            <i className="fas fa-edit"></i>
                         </Button>
                         <Button variant='light' className='mx-3'>
-                        <i class="fa-solid fa-trash"></i>
+                        <i className="fa-solid fa-trash"></i>
                         </Button>
                     </Stack>
                 </Card.Footer>
