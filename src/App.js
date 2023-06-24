@@ -2,13 +2,18 @@ import  Container  from "react-bootstrap/Container";
 import { Banner } from "./components/Banner";
 import { ToDoForm } from "./components/ToDoForm";
 import { ToDoList } from "./components/ToDoList";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { EditModal } from "./components/EditModal";
 
 
 export const App = () => {
 
+  const [todoItems, setTodoItems] = useState();
   const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    
+  }, [])
 
   const handleShow = () => {
     setShowModal(true)
@@ -25,7 +30,7 @@ export const App = () => {
       <EditModal showModal={showModal} handleClose={handleClose}/>
       <Banner />
       <ToDoForm />
-      <ToDoList handleClose={handleClose} handleShow={handleShow}/>
+      <ToDoList handleClose={handleClose} todoItems={todoItems} handleShow={handleShow}/>
     </Container>
   );
 };
