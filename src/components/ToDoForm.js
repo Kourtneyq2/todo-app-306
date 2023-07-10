@@ -1,16 +1,33 @@
+import { useState } from 'react'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-import FormRange from 'react-bootstrap/esm/FormRange'
 
-export const ToDoForm = () => {
+export const ToDoForm = ( {addTodoItem} ) => {
+    const [title, setTitle] = useState('');
+    const [error, setError] = useState('');
+
+    const handleOnChange = (event) => {
+        setTitle(event.currentTarget.value)
+    }
+
+    const handleOnSubmit = (event) => {
+        event.preventDefault();
+        if (!title) {
+           setError('Please enter a title'); 
+        }
+        addTodoItem(title);
+    }
     return(
-        <Form className='p-4 border rounded'>
+        <Form className='p-4 border rounded' onSubmit={handleOnSubmit}>
             <Form.Group className='mb-3' controlId='formBasicEmail'>
-                <Form.Control type='text' placeholder='Enter a title'/>
-                <Form.Text className='text-danger'>Please enter a valid title.</Form.Text>
+                <Form.Control type='text' placeholder='Enter a title' value={title} onChange={handleOnChange}/>
+                {error && (
+                    <Form.Text className='text-danger'>{error}</Form.Text>
+                    )
+                }
             </Form.Group>
             <div className='text-center'>
-                <Button variant='success' type='submit'>Enter</Button>
+                <Button variant='success' type='submit' >Enter</Button>
             </div>
         </Form>
     )
